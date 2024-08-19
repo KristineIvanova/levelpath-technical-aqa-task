@@ -25,8 +25,15 @@ export class LoginPage {
 
     async login(loginData: { email: string, password: string }) {
         console.log('Filling in login form...');
+        console.log(`Email: ${loginData.email}`);
         await this.page.locator('id=email').fill(loginData.email);
+        console.log('Email filled.');
+
+        console.log('Filling in password...');
         await this.page.locator('id=psw').fill(loginData.password);
+        console.log('Password filled.');
+
+        console.log('Submitting login form...');
         await this.page.locator('id=doLogin').click();
         console.log('Login form submitted.');
     }
