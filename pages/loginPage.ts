@@ -23,7 +23,6 @@ export class LoginPage {
             await this.page.reload()
             console.log('1');
 
-
             await this.page.waitForURL('https://e.csdd.lv/');
             console.log('2');
 
