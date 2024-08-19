@@ -22,15 +22,6 @@ jobs:
       with:
         node-version: lts/*
 
-    - name: Create secret environment variables from inputs
-      run: |
-        EMAIL=$(jq -r '.inputs.email' $GITHUB_EVENT_PATH)
-        PASSWORD=$(jq -r '.inputs.password' $GITHUB_EVENT_PATH)
-        echo ::add-mask::$EMAIL
-        echo ::add-mask::$PASSWORD
-        echo EMAIL="$EMAIL" >> $GITHUB_ENV
-        echo PASSWORD="$PASSWORD" >> $GITHUB_ENV
-
     - name: Install dependencies
       run: npm ci
 
