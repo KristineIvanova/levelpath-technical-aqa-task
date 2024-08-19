@@ -36,7 +36,7 @@ jobs:
         run: |
           echo "EMAIL=${{ github.event.inputs.email }}" >> .env
           echo "PASSWORD=${{ github.event.inputs.password }}" >> .env
-        shell: /usr/bin/bash -e {0}
+          shell: /usr/bin/bash -e {0}
 
       - name: Verify .env file content
         run: cat .env
