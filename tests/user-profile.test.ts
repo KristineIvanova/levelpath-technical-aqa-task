@@ -4,6 +4,7 @@ import { HomePage } from '../pages/homePage';
 import { ProfilePage } from '../pages/profilePage';
 import { LoginPage } from '../pages/loginPage';
 import dotenv from 'dotenv';
+import { PlaywrightTestConfig } from '@playwright/test';
 
 dotenv.config();
 
