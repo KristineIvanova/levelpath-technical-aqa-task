@@ -9,12 +9,12 @@ export class HomePage {
 
     async navigateToHomePage() {
         console.log('Navigating to home page...');
-        await this.page.goto('https://e.csdd.lv/');
+        await this.page.waitForURL('https://e.csdd.lv/');
+        await this.page.goto('https://e.csdd.lv', { waitUntil: 'domcontentloaded' });
         console.log('1');
 
         await this.page.locator('.auth-section')
             .screenshot({ animations: 'disabled' });
-        await this.page.waitForLoadState('networkidle')
 
         await this.page.reload();
         console.log('2');
