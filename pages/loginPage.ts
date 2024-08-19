@@ -18,9 +18,14 @@ export class LoginPage {
 
     async navigateToLoginPage() {
         console.log('Navigating to login page...');
-        await this.page.goto('https://e.csdd.lv');
-        await this.page.getByText('Autorizēties uzziņai').click();
-        console.log('Navigated to login page.');
+        try {
+            await this.page.goto('https://e.csdd.lv');
+            console.log('Page loaded: https://e.csdd.lv');
+            await this.page.getByText('Autorizēties uzziņai').click();
+            console.log('Clicked on "Autorizēties uzziņai"');
+        } catch (error) {
+            console.error('Error navigating to login page:', error);
+        }
     }
 
     async login(loginData: { email: string, password: string }) {
