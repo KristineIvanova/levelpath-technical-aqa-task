@@ -13,20 +13,30 @@ test('Assert that page contains e-mail from log-in step', async ({ page }) => {
     const loginPage = new LoginPage(page);
     const profilePage = new ProfilePage(page);
 
-    await homePage.navigateToHomePage();
-    const homePageLoaded = await homePage.isHomePageLoaded();
-    expect(homePageLoaded).toBe(true);
+    await test.step('Navigate to home page', async () => {
+        await homePage.navigateToHomePage();
+        const homePageLoaded = await homePage.isHomePageLoaded();
+        expect(homePageLoaded).toBe(true);
+    });
 
-    await loginPage.waitPageLoad();
-    await loginPage.navigateToLoginPage();
-    await loginPage.login(LoginData);
+    await test.step('Navigate to login page and login', async () => {
+        await loginPage.waitPageLoad();
+        await loginPage.navigateToLoginPage();
+        await loginPage.login(LoginData);
+    });
 
-    const loggedIn = await loginPage.isLoggedIn();
-    expect(loggedIn).toBe(true);
+    await test.step('Verify user is logged in', async () => {
+        const loggedIn = await loginPage.isLoggedIn();
+        expect(loggedIn).toBe(true);
+    });
 
-    await profilePage.goToProfilePage();
-    await profilePage.waitPageLoad();
+    await test.step('Navigate to profile page', async () => {
+        await profilePage.goToProfilePage();
+        await profilePage.waitPageLoad();
+    });
 
-    const emailFieldValue = await profilePage.getEmailValue();
-    expect(emailFieldValue).toBe(LoginData.email);
+    await test.step('Verify email field value', async () => {
+        const emailFieldValue = await profilePage.getEmailValue();
+        expect(emailFieldValue).toBe(LoginData.email);
+    });
 });
