@@ -10,6 +10,8 @@ export class HomePage {
     async navigateToHomePage() {
         console.log('Navigating to home page...');
         await this.page.goto('https://e.csdd.lv/');
+        await this.page.reload();
+        await this.page.waitForLoadState('domcontentloaded');
         console.log('Navigated to home page.');
     }
 
