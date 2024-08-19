@@ -1,36 +1,34 @@
 # Automated tests for e-CSDD system
 
-This repository contains automated tests written in Playwright and TypeScript to ensure the e-CSDD system is working as expected.
+This repository contains automated tests to ensure the e-CSDD system functions correctly. The tests are created using Playwright and TypeScript.
 
 ## Tests overview
 
-We have three main tests to verify the system's functionality.
+The test suite includes three tests to check different aspects of the system.
 
 ### Test 1: User profile verification
 
-1. Make sure you're logged into the e-CSDD system.
-2. Go to the user profile page by clicking on your profile icon/avatar and then "Edit Profile".
-3. Check that the page displays the email address you used to log in.
+1.Log into the e-CSDD system.
+2.Navigate to the profile page by clicking on the profile icon or avatar and selecting "Edit Profile."
+3.Verify that the page displays the email address used during login.
 
 ### Test 2: Vehicle registry search
 
-1. Make sure you're logged into the e-CSDD system.
-2. Go to the Vehicle Registry page.
-3. Search for vehicles using specific criteria: Mark (Citroen), Model (C3), Fuel type (Petrol), Transmission type (Manual), and Price range (500-10,000).
-4. Verify that the search results match your expectations.
-5. Click on the first result and check that the car info page displays the correct details.
+1.Log into the e-CSDD system.
+2.Access the Vehicle Registry page.
+3.Perform a vehicle search using the following filters: Brand (Citroen), Model (C3), Fuel Type (Petrol), Transmission Type (Manual), and Price Range (500-10,000).
+4.Confirm that the search results match the specified criteria.
+5.Click on the first result and check if the car details page displays accurate information.
 
 ### Bonus test: Negative case
 
-1. Test what happens when the search returns no results.
+1. Test the behavior of the system when the search returns no results.
 
-## Setting up and running the tests
+## To get started:
 
-To get started, follow these steps:
-
-1. Clone this repository to your local machine.
-2. Install the required dependencies by running `npm install`.
-3. Run the tests using `npx playwright test`.
+1. Clone this repository to a local machine.
+2. Install the necessary dependencies by running npm install.
+3. Run the tests with npx playwright test.
 
 ## Additional Information
 
