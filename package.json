@@ -1,0 +1,18 @@
+{
+  "name": "levelpath-qa-automation-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.0.0",
+    "dotenv": "^8.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.4.1"
+  },
+  "author": "Kristine Ivanova",
+  "license": "ISC"
+}
