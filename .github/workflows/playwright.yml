@@ -1,16 +1,18 @@
 name: Playwright Tests
 
 on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Define env name'
+      email:
+        description: 'Enter your EMAIL'
         required: true
-        default: 'prod'
-      branch:
-        description: 'Define branch name'
+      password:
+        description: 'Enter your PASSWORD'
         required: true
-        default: 'master'
 
 jobs:
   test:
@@ -32,12 +34,9 @@ jobs:
 
       - name: Run Playwright tests
         env:
-          EMAIL: ${{ secrets.EMAIL }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-        run: |
-          echo "Running tests for environment: ${{ github.event.inputs.environment }}"
-          echo "Running tests on branch: ${{ github.event.inputs.branch }}"
-          npx playwright test
+          EMAIL: ${{ github.event.inputs.email }}
+          PASSWORD: ${{ github.event.inputs.password }}
+        run: npx playwright test
 
       - uses: actions/upload-artifact@v4
         if: always()
