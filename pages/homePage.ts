@@ -8,13 +8,20 @@ export class HomePage {
     }
 
     async navigateToHomePage() {
-        const browser = await chromium.launch({ headless: true });
-        const context = await browser.newContext();
-        const page = await context.newPage();
         console.log('Navigating to home page...');
         await this.page.goto('https://e.csdd.lv/');
+        console.log('1');
+
+        await this.page.locator('.auth-section')
+            .screenshot({ animations: 'disabled' });
+        await this.page.waitForLoadState('networkidle')
+
         await this.page.reload();
+        console.log('2');
+
         await this.page.waitForLoadState('domcontentloaded');
+        console.log('3');
+
         console.log('Navigated to home page.');
     }
 

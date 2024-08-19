@@ -19,6 +19,7 @@ export class LoginPage {
     async navigateToLoginPage() {
         console.log('Navigating to login page...');
         await this.page.goto('https://e.csdd.lv/');
+
         await this.page.reload();
         console.log('Navigated to login page.');
         try {
