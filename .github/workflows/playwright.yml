@@ -1,10 +1,6 @@
 name: Playwright Tests
 
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
   workflow_dispatch:
     inputs:
       email:
@@ -16,31 +12,42 @@ on:
 
 jobs:
   test:
-    timeout-minutes: 60
     runs-on: ubuntu-latest
+    timeout-minutes: 60
 
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: lts/*
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
 
-      - name: Install dependencies
-        run: npm ci
+    - name: Create secret environment variables from inputs
+      run: |
+        EMAIL=$(jq -r '.inputs.email' $GITHUB_EVENT_PATH)
+        PASSWORD=$(jq -r '.inputs.password' $GITHUB_EVENT_PATH)
+        echo ::add-mask::$EMAIL
+        echo ::add-mask::$PASSWORD
+        echo EMAIL="$EMAIL" >> $GITHUB_ENV
+        echo PASSWORD="$PASSWORD" >> $GITHUB_ENV
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+    - name: Install dependencies
+      run: npm ci
 
-      - name: Run Playwright tests
-        env:
-          EMAIL: ${{ github.event.inputs.email }}
-          PASSWORD: ${{ github.event.inputs.password }}
-        run: npx playwright test
+    - name: Install Playwright Browsers
+      run: npx playwright install --with-deps
 
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+    - name: Run Playwright tests
+      env:
+        EMAIL: ${{ env.EMAIL }}
+        PASSWORD: ${{ env.PASSWORD }}
+      run: |
+        echo "Running tests with the provided credentials"
+        npx playwright test
+
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
