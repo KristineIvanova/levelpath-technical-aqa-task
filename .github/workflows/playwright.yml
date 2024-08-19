@@ -15,10 +15,6 @@ jobs:
     if: github.event_name == 'push'
     runs-on: ubuntu-20.04
     timeout-minutes: 60
-    services:
-      web:
-        image: private
-
 
     steps:
       - uses: actions/checkout@v4
