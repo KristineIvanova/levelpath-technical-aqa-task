@@ -18,24 +18,14 @@ export class LoginPage {
 
     async navigateToLoginPage() {
         console.log('Navigating to login page...');
-        await this.page.goto('https://e.csdd.lv/login/?action=getLoginForm');
+        await this.page.waitForTimeout(15000); // Add a delay to ensure the page is fully loaded
+        await this.page.goto('https://e.csdd.lv/');
+        await this.page.reload();
         await this.page.waitForLoadState('domcontentloaded');
-        await this.page.waitForURL('https://e.csdd.lv/login/?action=getLoginForm');
         console.log('Navigated to login page.');
-        /*try {
-            await this.page.reload()
-            console.log('1');
-
-            console.log('2');
-
-            await this.page.reload()
-            console.log('3');
+        try {
 
             await this.page.goto('https://e.csdd.lv/');
-            console.log('4');
-
-            await this.page.reload()
-
             await this.page.waitForTimeout(15000); // Add a delay to ensure the page is fully loaded
             console.log('Page loaded: https://e.csdd.lv/');
             await this.page.getByText('Autorizēties uzziņai').click();
@@ -47,7 +37,7 @@ export class LoginPage {
             if (errorSummaryVisible) {
                 console.error('Error summary detected on the page.');
             }
-        }*/
+        }
     }
 
     async login(loginData: { email: string, password: string }) {
