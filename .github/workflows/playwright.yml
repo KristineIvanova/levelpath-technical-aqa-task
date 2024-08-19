@@ -11,14 +11,9 @@ on:
         required: true
 
 jobs:
-  test_build:
-    if: github.event_name == 'push'
+  test:
     runs-on: ubuntu-20.04
     timeout-minutes: 60
-    services:
-      web:
-        image: private
-
 
     steps:
       - uses: actions/checkout@v4
