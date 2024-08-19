@@ -39,8 +39,8 @@ jobs:
 
     - name: Run Playwright tests
       env:
-        EMAIL: ${{ EMAIL }})}}
-        PASSWORD: ${{ PASSWORD }}
+          EMAIL: ${{ github.event.inputs.email }}
+          PASSWORD: ${{ github.event.inputs.password }}
       run: |
         echo "Running tests with the provided credentials"
         npx playwright test
