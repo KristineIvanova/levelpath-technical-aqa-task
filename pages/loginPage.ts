@@ -19,7 +19,8 @@ export class LoginPage {
     async navigateToLoginPage() {
         console.log('Navigating to login page...');
         try {
-            await this.page.goto('https://e.csdd.lv');
+            await this.page.waitForTimeout(5000); // Add a delay to ensure the page is fully loaded
+            await this.page.goto('https://e.csdd.lv', { waitUntil: 'load' });
             console.log('Page loaded: https://e.csdd.lv');
             await this.page.getByText('Autorizēties uzziņai').click();
             console.log('Clicked on "Autorizēties uzziņai"');
