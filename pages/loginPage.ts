@@ -18,8 +18,9 @@ export class LoginPage {
 
     async navigateToLoginPage() {
         console.log('Navigating to login page...');
-        try {
-            await this.page.goto('https://e.csdd.lv/');
+        await this.page.goto('https://e.csdd.lv/login/?action=getLoginForm');
+        console.log('Navigated to login page.');
+        /*try {
             await this.page.reload()
             console.log('1');
 
@@ -44,7 +45,7 @@ export class LoginPage {
             if (errorSummaryVisible) {
                 console.error('Error summary detected on the page.');
             }
-        }
+        }*/
     }
 
     async login(loginData: { email: string, password: string }) {
