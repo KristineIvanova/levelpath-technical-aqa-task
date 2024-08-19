@@ -24,8 +24,13 @@ export class LoginPage {
             console.log('Page loaded: https://e.csdd.lv');
             await this.page.getByText('Autorizēties uzziņai').click();
             console.log('Clicked on "Autorizēties uzziņai"');
+
         } catch (error) {
             console.error('Error navigating to login page:', error);
+            const errorSummaryVisible = await this.page.locator('div.error-summary').isVisible();
+            if (errorSummaryVisible) {
+                console.error('Error summary detected on the page.');
+            }
         }
     }
 
