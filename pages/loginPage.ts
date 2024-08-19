@@ -19,6 +19,8 @@ export class LoginPage {
     async navigateToLoginPage() {
         console.log('Navigating to login page...');
         await this.page.goto('https://e.csdd.lv/login/?action=getLoginForm');
+        await this.page.waitForLoadState('domcontentloaded');
+        await this.page.waitForURL('https://e.csdd.lv/login/?action=getLoginForm');
         console.log('Navigated to login page.');
         /*try {
             await this.page.reload()
