@@ -5,3 +5,5 @@ async function globalSetup() {
     const context = await browser.newContext();
     const page : Page = await context.newPage();
 }
+
+export default globalSetup;
