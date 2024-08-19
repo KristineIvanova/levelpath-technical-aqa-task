@@ -21,8 +21,20 @@ export class LoginPage {
         try {
             await this.page.waitForTimeout(15000); // Add a delay to ensure the page is fully loaded
             //await this.page.goto('https://e.csdd.lv/');
+            await this.page.reload()
+            console.log('1');
+
+
             await this.page.waitForURL('https://e.csdd.lv/');
+            console.log('2');
+
+            await this.page.reload()
+            console.log('3');
+
             await this.page.goto('https://e.csdd.lv/');
+            console.log('4');
+
+            await this.page.reload()
 
             await this.page.waitForTimeout(15000); // Add a delay to ensure the page is fully loaded
             console.log('Page loaded: https://e.csdd.lv/');
