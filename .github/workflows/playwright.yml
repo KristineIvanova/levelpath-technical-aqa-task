@@ -41,7 +41,7 @@ jobs:
         run: |
           echo "EMAIL=kristine12716@yahoo.com" >> .env
           echo "PASSWORD=***" >> .env
-        shell: /bin/bash -e {0}
+          # shell: /bin/bash -e {0}
 
       - name: Verify .env file content
         run: cat .env
