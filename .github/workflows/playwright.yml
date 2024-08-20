@@ -12,7 +12,7 @@ on:
 
 jobs:
   test:
-    runs-on: self-hosted
+    runs-on: ubuntu-20.04
     timeout-minutes: 60
 
     steps:
@@ -22,6 +22,13 @@ jobs:
         with:
           node-version: lts/*
 
+      - name: Check site accessibility
+        run: |
+          if ! curl -s --head  --request GET https://e.csdd.lv/ | grep "200 OK" > /dev/null; then 
+            echo "Site is not accessible. Check firewall or proxy settings.";
+            exit 1;
+          fi
+
       - name: Install dependencies
         run: |
           npm install -g yarn
@@ -29,8 +36,8 @@ jobs:
           rm -rf node_modules
           yarn install --frozen-lockfile
 
-      - name: Install Playwright version 1.39.0
-        run: npm install playwright@1.39.0
+      - name: Install Playwright version 1.33.0
+        run: npm install playwright@1.33.0
 
       - name: Install Chrome Browser for Playwright
         run: |
@@ -39,9 +46,9 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo "EMAIL=kristine12716@yahoo.com" >> .env
-          echo "PASSWORD=***" >> .env
-          # shell: /bin/bash -e {0}
+          echo "EMAIL=${{ github.event.inputs.email }}" >> .env
+          echo "PASSWORD=${{ github.event.inputs.password }}" >> .env
+        shell: /usr/bin/bash -e {0}
 
       - name: Verify .env file content
         run: cat .env
