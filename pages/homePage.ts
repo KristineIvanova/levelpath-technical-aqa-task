@@ -1,4 +1,5 @@
-import {chromium, Page} from '@playwright/test';
+import {Page} from '@playwright/test';
+
 
 export class HomePage {
     private page: Page;
@@ -8,6 +9,7 @@ export class HomePage {
     }
 
     async navigateToHomePage() {
+
         console.log('Navigating to home page...');
         await this.page.goto('https://www.google.lv/');
         console.log('1');

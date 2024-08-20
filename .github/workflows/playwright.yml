@@ -12,7 +12,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-20.04
+    runs-on: macos-latest
     timeout-minutes: 60
 
     steps:
@@ -29,8 +29,8 @@ jobs:
           rm -rf node_modules
           yarn install --frozen-lockfile
 
-      - name: Install Playwright version 1.33.0
-        run: npm install playwright@1.33.0
+      - name: Install Playwright version 1.39.0
+        run: npm install playwright@1.39.0
 
       - name: Install Chrome Browser for Playwright
         run: |
