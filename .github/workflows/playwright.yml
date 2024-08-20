@@ -24,9 +24,11 @@ jobs:
 
       - name: Check site accessibility
         run: |
-          if ! curl -s --head  --request GET https://e.csdd.lv/ | grep "200 OK" > /dev/null; then 
-            echo "Site is not accessible. Check firewall or proxy settings.";
-            exit 1;
+          if ! curl -s --head --request GET https://e.csdd.lv/ \
+          -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" \
+          | grep "200 OK" > /dev/null; then
+          echo "Site is not accessible. Check firewall or proxy settings.";
+          exit 1;
           fi
 
       - name: Install dependencies
@@ -48,7 +50,6 @@ jobs:
         run: |
           echo "EMAIL=${{ github.event.inputs.email }}" >> .env
           echo "PASSWORD=${{ github.event.inputs.password }}" >> .env
-        shell: /usr/bin/bash -e {0}
 
       - name: Verify .env file content
         run: cat .env
