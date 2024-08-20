@@ -32,8 +32,10 @@ jobs:
       - name: Install Playwright version 1.33.0
         run: npm install playwright@1.33.0
 
-      - name: Install Playwright Browsers
-        run: yarn playwright install --with-deps
+      - name: Install Chrome Browser for Playwright
+        run: |
+          npx playwright install-deps chromium
+          npx playwright install chromium
 
       - name: Create .env file
         run: |
