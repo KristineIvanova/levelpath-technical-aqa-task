@@ -29,11 +29,11 @@ jobs:
           rm -rf node_modules
           yarn install --frozen-lockfile
 
+      - name: Install Playwright version 1.33.0
+        run: npm install playwright@1.33.0
+
       - name: Install Playwright Browsers
-        env:
-          DEBUG: pw:install
-          PLAYWRIGHT_BROWSERS_PATH: ./temp-browsers
-        run: npx playwright install --with-deps
+        run: yarn playwright install --with-deps
 
       - name: Create .env file
         run: |
