@@ -30,7 +30,10 @@ jobs:
           yarn install --frozen-lockfile
 
       - name: Install Playwright Browsers
-        run: yarn playwright install --with-deps
+        env:
+          DEBUG: pw:install
+          PLAYWRIGHT_BROWSERS_PATH: ./temp-browsers
+        run: npx playwright install --with-deps
 
       - name: Create .env file
         run: |
