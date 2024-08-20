@@ -51,16 +51,16 @@ jobs:
 
       - name: Create .env file
         run: |
-          echo "EMAIL=${{ github.event.inputs.email }}" >> .env
-          echo "PASSWORD=${{ github.event.inputs.password }}" >> .env
+          echo "EMAIL=${{ secrets.EMAIL }}" >> .env
+          echo "PASSWORD=${{ secrets.PASSWORD }}" >> .env
 
       - name: Verify .env file content
         run: cat .env
 
       - name: Run Playwright tests
         env:
-          EMAIL: ${{ github.event.inputs.email }}
-          PASSWORD: ${{ github.event.inputs.password }}
+          EMAIL: ${{ secrets.EMAIL }}
+          PASSWORD: ${{ secrets.PASSWORD }}
         run: |
           echo "Running tests with the provided credentials"
           npx playwright test

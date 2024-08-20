@@ -6,4 +6,3 @@ async function globalSetup() {
     const page : Page = await context.newPage();
 }
 
-export default globalSetup;
