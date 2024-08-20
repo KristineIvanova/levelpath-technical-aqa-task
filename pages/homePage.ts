@@ -9,7 +9,7 @@ export class HomePage {
 
     async navigateToHomePage() {
         console.log('Navigating to home page...');
-        await this.page.goto('https://www.e-klase.lv/');
+        await this.page.goto('https://www.csdd.lv/');
         console.log('1');
 
         await this.page.reload();
