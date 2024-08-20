@@ -26,11 +26,12 @@ jobs:
         run: |
           curl -v -s --head --request GET https://e.csdd.lv/ \
           -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36" \
-          | grep "200 OK" > /dev/null; then
-          echo "Site is accessible.";
+          | grep "200 OK" > /dev/null
+          if [ $? -eq 0 ]; then
+            echo "Site is accessible."
           else
-          echo "Site is not accessible. Check firewall or proxy settings.";
-          exit 1;
+            echo "Site is not accessible. Check firewall or proxy settings."
+            exit 1
           fi
 
       - name: Install dependencies
