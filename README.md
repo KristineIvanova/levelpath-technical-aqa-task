@@ -27,8 +27,11 @@ The test suite includes three tests to check different aspects of the system.
 ## To get started:
 
 1. Clone this repository to a local machine.
-2. Install the necessary dependencies by running npm install.
-3. Run the tests with npx playwright test.
+2. Install the necessary dependencies by running `npm install`
+3. Install Playwright by running `npx playwright install`
+4. Create a `.env` file in the root of the project and set environment variables `EMAIL` and `PASSWORD` with your e-CSDD system credentials. 
+5. Run the tests with `npx playwright test`
+6. View the test report with `npx playwright show-report`
 
 ## Additional Information
 
